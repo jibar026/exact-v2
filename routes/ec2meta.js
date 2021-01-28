@@ -7,16 +7,14 @@ var request = require('request');
 // const url = "http://169.254.169.254/latest/meta-data/"
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  var url = 'http://169.254.169.254/latest/meta-data/public-ipv4';
-	//var count = 5;
-  //var publicIP;
-  request.get(url, function(err, response, body) {
-    if (!err && response.statusCode == 200) {
-      return body;
-    }
-    else{
-      return err;
-    }
+  var metadata = require('node-ec2-metadata');
+
+  metadata.getMetadataForInstance('instance-id')
+  .then(function(instanceId) {
+      console.log("Instance ID: " + instanceId);
+  })
+  .fail(function(error) {
+      console.log("Error: " + error);
   });
 });
 
