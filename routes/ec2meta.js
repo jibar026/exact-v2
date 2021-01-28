@@ -8,34 +8,21 @@ var request = require('request');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   var metadata = require('node-ec2-metadata');
-  var insId;
-  var publicIP;
-
-  metadata.getMetadataForInstance('instance-id')
-  .then(function(instanceId) {
-      console.log("Instance ID: " + instanceId);
-      insId = instanceId;
+  Q.all([
+    metadata.getMetadataForInstance('ami-id'),
+    metadata.getMetadataForInstance('hostname'),
+    metadata.getMetadataForInstance('public-hostname'),
+    metadata.getMetadataForInstance('public-ipv4'),
+  ])
+  .spread(function(amiID, hostname, publicHostname, publicIPv4) {
+      console.log("AMI-ID: " + amiID);
+      console.log("Hostname: " + hostname);
+      console.log("Public Hostname: " + publicHostname);
+      console.log("Public IPv4: " + publicIPv4);
   })
   .fail(function(error) {
       console.log("Error: " + error);
   });
-
-  metadata.getMetadataForInstance('public-ipv4')
-  .then(function(publicIp) {
-      console.log("Public IP: " + publicIp);
-      publicIP = publicIp;
-  })
-  .fail(function(error) {
-      console.log("Error: " + error);
-  });
-
-  res.json([{
-    id: 'public_ip',
-    value: publicIP,
-  }, {
-    id: 'instance_id',
-    value: insId,
-  }]);
 });
 
 module.exports = router;
