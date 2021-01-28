@@ -1,32 +1,45 @@
 var express = require('express');
 var router = express.Router();
-var request = require('request');
 var Q = require('q');
-//var async = require('async');
-//var ip = require('ip');
-
-// const url = "http://169.254.169.254/latest/meta-data/"
-/* GET users listing. */
 router.get('/', function(req, res, next) {
   var metadata = require('node-ec2-metadata');
 
   Q.all([
+      metadata.getMetadataForInstance('instance-type'),
+      metadata.getMetadataForInstance('public-ipv4'),
       metadata.getMetadataForInstance('ami-id'),
+      metadata.getMetadataForInstance('instance-id'),
       metadata.getMetadataForInstance('hostname'),
       metadata.getMetadataForInstance('public-hostname'),
-      metadata.getMetadataForInstance('public-ipv4'),
+      metadata.getMetadataForInstance('local-hostname'),
+      metadata.getMetadataForInstance('local-ipv4'),
+
   ])
-  .spread(function(amiID, hostname, publicHostname, publicIPv4) {
-      console.log("AMI-ID: " + amiID);
-      console.log("Hostname: " + hostname);
-      console.log("Public Hostname: " + publicHostname);
-      console.log("Public IPv4: " + publicIPv4);
+  .spread(function(type, instanceID, amiID, hostname, publicHostname, localHosname, publicIPv4, localIPv4) {
       res.json([{
+        id: "Instance Type",
+        value: type
+      },{
+        id: "Instance ID",
+        value: instanceID
+      },{
         id: "AMI-ID",
         value: amiID
-      }, {
+      },{
         id: "Public IPv4",
         value: publicIPv4
+      },{
+        id: "Private IPv4",
+        value: localIPv4
+      },{
+        id: "Hostname",
+        value: hostname
+      },{
+        id: "Public Hostname",
+        value: publicHostname
+      },{
+        id: "Local Hostname",
+        value: localHosname
     }]);
   })
   .fail(function(error) {
