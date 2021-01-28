@@ -16,6 +16,7 @@ router.get('/', function(req, res, next) {
   .fail(function(error) {
       console.log("Error: " + error);
   });
+  res.json(metadata);
 });
 
 module.exports = router;
