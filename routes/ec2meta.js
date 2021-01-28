@@ -1,25 +1,23 @@
 var express = require('express');
 var router = express.Router();
-// const axios = require('axios')
+var request = require('request');
+//var async = require('async');
+//var ip = require('ip');
 
 // const url = "http://169.254.169.254/latest/meta-data/"
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    // try {
-    //     const response = axios.get(url)
-    //     const data = response.data
-    //     console.log(data)
-    //     res.send(data)
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    res.json([{
-      id: 'ip',
-      value: req.ip
-    }, {
-      id: 'hostname',
-      value: req.hostname
-    }]);
+  var url = 'http://169.254.169.254/latest/meta-data/public-ipv4';
+	//var count = 5;
+  //var publicIP;
+  request.get(url, function(err, response, body) {
+    if (!err && response.statusCode == 200) {
+      res(body);
+    }
+    else{
+      res(err);
+    }
+  });
 });
 
 module.exports = router;
