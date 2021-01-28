@@ -11,7 +11,7 @@ class App extends Component {
     // server_host: window.location.host,
     // user_agent: window.navigator.userAgent,
     // seconds: 0,
-    users : [],
+    metadata : [],
   }
   render() {
     return (
@@ -21,8 +21,8 @@ class App extends Component {
         <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
           <Navbar />
           <main className="terminal px-3 text-left">
-            {this.state.users.map(user =>
-            <div key={user.id}>{user.username}</div>
+            {this.state.metadata.map(meta =>
+            <div key={meta.id}>{meta.value}</div>
             )}
           </main>
           <footer className="mt-auto text-white-50">
@@ -55,7 +55,7 @@ class App extends Component {
     this.interval = setInterval(() => this.tick(), 1000);
     fetch('/ec2-meta')
       .then(res => res.json())
-      .then(users => this.setState({ users }));
+      .then(metadata => this.setState({ metadata }));
   }
   
   componentWillUnmount() {
