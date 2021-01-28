@@ -8,12 +8,33 @@ var request = require('request');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   var metadata = require('node-ec2-metadata');
+  var insId;
+  var publicIP;
+
+  metadata.getMetadataForInstance('instance-id')
+  .then(function(instanceId) {
+      console.log("Instance ID: " + instanceId);
+      insId = instanceId;
+  })
+  .fail(function(error) {
+      console.log("Error: " + error);
+  });
+
+  metadata.getMetadataForInstance('public-ipv4')
+  .then(function(publicIp) {
+      console.log("Public IP: " + publicIp);
+      publicIP = publicIp;
+  })
+  .fail(function(error) {
+      console.log("Error: " + error);
+  });
+
   res.json([{
     id: 'public_ip',
-    value: metadata.getMetadataForInstance('public-ipv4'),
+    value: publicIP,
   }, {
-    id: 'hostname',
-    username: metadata.getMetadataForInstance('hostname'),
+    id: 'instance_id',
+    value: insId,
   }]);
 });
 
