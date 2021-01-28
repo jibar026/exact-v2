@@ -12,10 +12,10 @@ router.get('/', function(req, res, next) {
   //var publicIP;
   request.get(url, function(err, response, body) {
     if (!err && response.statusCode == 200) {
-      res(body);
+      return body;
     }
     else{
-      res(err);
+      return err;
     }
   });
 });
