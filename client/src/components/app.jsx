@@ -17,7 +17,7 @@ class App extends Component {
           <Navbar />
           <main className="terminal px-3 text-left">
             {this.state.metadata.map(meta =>
-              <p>{meta.id} : {meta.value}</p>
+              <h4>{meta.id} : {meta.value}</h4>
             )}
           </main>
           <footer className="mt-auto text-white-50">

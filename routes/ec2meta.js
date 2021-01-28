@@ -10,12 +10,11 @@ router.get('/', function(req, res, next) {
       metadata.getMetadataForInstance('ami-id'),
       metadata.getMetadataForInstance('hostname'),
       metadata.getMetadataForInstance('public-hostname'),
-      metadata.getMetadataForInstance('local-hostname'),
       metadata.getMetadataForInstance('public-ipv4'),
       metadata.getMetadataForInstance('local-ipv4'),
 
   ])
-  .spread(function(type, instanceID, amiID, hostname, publicHostname, localHosname, publicIPv4, localIPv4) {
+  .spread(function(type, instanceID, amiID, hostname, publicHostname, publicIPv4, localIPv4) {
       res.json([{
         id: "Instance Type",
         value: type
@@ -37,10 +36,7 @@ router.get('/', function(req, res, next) {
       },{
         id: "Public Hostname",
         value: publicHostname
-      },{
-        id: "Local Hostname",
-        value: localHosname
-    }]);
+      }]);
   })
   .fail(function(error) {
       console.log("Error: " + error);
