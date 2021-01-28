@@ -12,11 +12,11 @@ router.get('/', function(req, res, next) {
   metadata.getMetadataForInstance('instance-id')
   .then(function(instanceId) {
       console.log("Instance ID: " + instanceId);
+      res.send(instanceId);
   })
   .fail(function(error) {
       console.log("Error: " + error);
   });
-  res.json(metadata);
 });
 
 module.exports = router;
