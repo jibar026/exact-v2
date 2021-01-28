@@ -9,10 +9,18 @@ var request = require('request');
 router.get('/', function(req, res, next) {
   var metadata = require('node-ec2-metadata');
 
-  metadata.getMetadataForInstance('instance-id')
+   metadata.getMetadataForInstance('instance-id')
   .then(function(instanceId) {
-      console.log("Instance ID: " + instanceId);
-      res.send(instanceId);
+    res.json([{
+      id: 'public_ip',
+      value: metadata.getMetadataForInstance('public-ipv4'),
+    }, {
+      id: 'hostname',
+      username: metadata.getMetadataForInstance('hostname'),
+    }]);
+    // metadata.getMetadataForInstance('ami-id'),
+    // metadata.getMetadataForInstance('public-hostname'),
+    
   })
   .fail(function(error) {
       console.log("Error: " + error);
