@@ -6,12 +6,12 @@ router.get('/', function(req, res, next) {
 
   Q.all([
       metadata.getMetadataForInstance('instance-type'),
-      metadata.getMetadataForInstance('public-ipv4'),
-      metadata.getMetadataForInstance('ami-id'),
       metadata.getMetadataForInstance('instance-id'),
+      metadata.getMetadataForInstance('ami-id'),
       metadata.getMetadataForInstance('hostname'),
       metadata.getMetadataForInstance('public-hostname'),
       metadata.getMetadataForInstance('local-hostname'),
+      metadata.getMetadataForInstance('public-ipv4'),
       metadata.getMetadataForInstance('local-ipv4'),
 
   ])
