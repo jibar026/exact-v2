@@ -21,6 +21,13 @@ router.get('/', function(req, res, next) {
       console.log("Hostname: " + hostname);
       console.log("Public Hostname: " + publicHostname);
       console.log("Public IPv4: " + publicIPv4);
+      res.json([{
+        id: "AMI-ID",
+        value: amiID
+      }, {
+        id: "Public IPv4",
+        value: publicIPv4
+    }]);
   })
   .fail(function(error) {
       console.log("Error: " + error);
