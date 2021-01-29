@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
   .spread(function(type, instanceID, amiID, hostname, publicHostname, publicIPv4, localIPv4) {
       res.json({
         "IP" : publicIPv4,
-        "meta" : [{
+        "META" : [{
                     id: "Instance Type",
                     value: type
                   },{
