@@ -6,7 +6,10 @@ import axios from 'axios'
 class App extends Component {
   state = {
     // seconds: 0,
-    metadata : [],
+    metadata : {
+      IP : "0.0.0.0", 
+      Metas :[]
+    },
   }
   render() {
     return (
@@ -17,7 +20,7 @@ class App extends Component {
           <Navbar />
           <main className="terminal px-3 text-left">
             <h2>VM IP: {this.state.metadata.IP}</h2>
-            {
+            { 
                 this.state.metadata.Metas.map(meta =>
                   <h5>{meta.id} : {meta.value}</h5>
                 )
@@ -52,20 +55,14 @@ class App extends Component {
   
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
+    fetch('/ec2-meta')
+      .then(res => res.json())
+      .then(metadata => this.setState({ metadata }));
+    this.forceUpdate();
   }
   
   componentWillUnmount() {
     clearInterval(this.interval);
-  }
-
-  componentWillMount() {
-    this.renderMyData();
-  }
-
-  renderMyData(){
-    fetch('/ec2-meta')
-      .then(res => res.json())
-      .then(metadata => this.setState({ metadata }));
   }
 }
 export default App;
