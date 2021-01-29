@@ -5,6 +5,8 @@ import App from './components/app';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
+// URL: http://54.234.44.101:3000/
+
 ReactDOM.render(
   <React.StrictMode>
     <App/>

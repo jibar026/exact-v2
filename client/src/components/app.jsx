@@ -8,7 +8,7 @@ class App extends Component {
     // seconds: 0,
     metadata : {
       IP : "0.0.0.0", 
-      Metas :[]
+      Metas :[{id:"hostName",value:"localhost"},{id:"host",value:"http://localhost:3000"}]
     },
   }
   render() {
@@ -16,7 +16,7 @@ class App extends Component {
       // the overlay and horizontal pattern
       <div className="crt d-flex h-100 text-center text-white">
         <div className="scanline"></div>
-        <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column overflow-hidden">
           <Navbar />
           <main className="terminal px-3 text-left">
             <h2>VM IP: {this.state.metadata.IP}</h2>
