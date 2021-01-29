@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
       res.json(
         {
           IP: publicIPv4,
-          Metas :
+          Metas:
                 [
                   {
                   id: "Instance Type",
