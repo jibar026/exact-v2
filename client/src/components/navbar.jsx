@@ -6,7 +6,7 @@ class Navbar extends Component {
         return (  
             <header className="mb-auto">
                 <div>
-                    <h3 className="float-md-start mb-0">My First React App</h3>
+                    <h3 className="float-md-start mb-0">AWS EC2 Info Terminal</h3>
                     <nav className="nav nav-masthead justify-content-center float-md-end">
                     <a className="nav-link active" aria-current="page" href="#">Home</a>
                     <a className="nav-link" href="#">Features</a>

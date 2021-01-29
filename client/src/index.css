@@ -123,7 +123,7 @@ body {
 }
 
 /* Puts a blinking square after the content as replacement for caret */
-.ip-text:after {
+.term_end:after {
   content: "■";
   animation: cursor 1s infinite;
   animation-timing-function: step-end;
