@@ -52,14 +52,20 @@ class App extends Component {
   
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
-
-    fetch('/ec2-meta')
-      .then(res => res.json())
-      .then(metadata => this.setState({ metadata }));
   }
   
   componentWillUnmount() {
     clearInterval(this.interval);
+  }
+
+  componentWillMount() {
+    this.renderMyData();
+  }
+
+  renderMyData(){
+    fetch('/ec2-meta')
+      .then(res => res.json())
+      .then(metadata => this.setState({ metadata }));
   }
 }
 export default App;
