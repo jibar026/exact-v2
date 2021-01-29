@@ -22,7 +22,7 @@ class App extends Component {
             <h2>VM IP: {this.state.metadata.IP}</h2>
             { 
                 this.state.metadata.Metas.map(meta =>
-                  <h5>{meta.id} : {meta.value}</h5>
+                  <h5 key={meta.id}>{meta.id} : {meta.value}</h5>
                 )
             }
             <h5 className="term_end"></h5>
