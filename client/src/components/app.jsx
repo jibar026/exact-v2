@@ -6,7 +6,7 @@ import axios from 'axios'
 class App extends Component {
   state = {
     // seconds: 0,
-    metadata : [],
+    // metadata : [],
   }
   render() {
     return (
