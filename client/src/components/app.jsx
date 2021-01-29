@@ -16,8 +16,8 @@ class App extends Component {
         <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
           <Navbar />
           <main className="terminal px-3 text-left">
-            <h2>VM IP: {this.state.metadata[3].value}</h2>
-            {this.state.metadata.map(meta =>
+            <h2>VM IP: {this.state.metadata.IP}</h2>
+            {this.state.metadata.meta.map(meta =>
               <h5>{meta.id} : {meta.value}</h5>
             )}
             <h5 className="term_end"></h5>

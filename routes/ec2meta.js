@@ -15,28 +15,30 @@ router.get('/', function(req, res, next) {
 
   ])
   .spread(function(type, instanceID, amiID, hostname, publicHostname, publicIPv4, localIPv4) {
-      res.json([{
-        id: "Instance Type",
-        value: type
-      },{
-        id: "Instance ID",
-        value: instanceID
-      },{
-        id: "AMI-ID",
-        value: amiID
-      },{
-        id: "Public IPv4",
-        value: publicIPv4
-      },{
-        id: "Private IPv4",
-        value: localIPv4
-      },{
-        id: "Hostname",
-        value: hostname
-      },{
-        id: "Public Hostname",
-        value: publicHostname
-      }]);
+      res.json({
+        "IP" : publicIPv4,
+        "meta" : [{
+                    id: "Instance Type",
+                    value: type
+                  },{
+                    id: "Instance ID",
+                    value: instanceID
+                  },{
+                    id: "AMI-ID",
+                    value: amiID
+                  },{
+                    id: "Public IPv4",
+                    value: publicIPv4
+                  },{
+                    id: "Private IPv4",
+                    value: localIPv4
+                  },{
+                    id: "Hostname",
+                    value: hostname
+                  },{
+                    id: "Public Hostname",
+                    value: publicHostname
+      }]});
   })
   .fail(function(error) {
       console.log("Error: " + error);
