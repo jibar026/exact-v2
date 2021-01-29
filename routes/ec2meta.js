@@ -19,29 +19,37 @@ router.get('/', function(req, res, next) {
         {
           IP: publicIPv4,
           Metas :
-                [{
-                id: "Instance Type",
-                value: type
-              },{
-                id: "Instance ID",
-                value: instanceID
-              },{
-                id: "AMI-ID",
-                value: amiID
-              },{
-                id: "Public IPv4",
-                value: publicIPv4
-              },{
-                id: "Private IPv4",
-                value: localIPv4
-              },{
-                id: "Hostname",
-                value: hostname
-              },{
-                id: "Public Hostname",
-                value: publicHostname
-              }]
-    });
+                [
+                  {
+                  id: "Instance Type",
+                  value: type
+                },
+                {
+                  id: "Instance ID",
+                  value: instanceID
+                },
+                {
+                  id: "AMI-ID",
+                  value: amiID
+                },
+                {
+                  id: "Public IPv4",
+                  value: publicIPv4
+                },
+                {
+                  id: "Private IPv4",
+                  value: localIPv4
+                },
+                {
+                  id: "Hostname",
+                  value: hostname
+                },
+                {
+                  id: "Public Hostname",
+                  value: publicHostname
+                }
+               ]
+      });
   })
   .fail(function(error) {
       console.log("Error: " + error);
