@@ -6,7 +6,7 @@ import axios from 'axios'
 class App extends Component {
   state = {
     // seconds: 0,
-    // metadata : [],
+    metadata : [],
   }
   render() {
     return (
@@ -17,7 +17,7 @@ class App extends Component {
           <Navbar />
           <main className="terminal px-3 text-left">
             <h2>VM IP: {this.state.metadata.IP}</h2>
-            { (this.state.metadata) ? 
+            { (this.state.metadata.length > 0) ? 
                 this.state.metadata.Metas.map(meta =>
                   <h5>{meta.id} : {meta.value}</h5>
                 ) : ('')
