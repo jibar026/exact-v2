@@ -17,10 +17,10 @@ class App extends Component {
           <Navbar />
           <main className="terminal px-3 text-left">
             <h2>VM IP: {this.state.metadata.IP}</h2>
-            { (this.state.metadata.length > 0) ? 
+            {
                 this.state.metadata.Metas.map(meta =>
                   <h5>{meta.id} : {meta.value}</h5>
-                ) : ('')
+                )
             }
             <h5 className="term_end"></h5>
           </main>
