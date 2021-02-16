@@ -35,7 +35,7 @@ class App extends Component {
                 AWS
               </a>{" "}
               EC2 Instance.
-              , with ♡, by{" "}
+              , with ♡ by{" "}
               <a href="https://github.com/jibar026" className="text-white">
                 @jibar026
               </a>
